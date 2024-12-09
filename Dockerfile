@@ -1,5 +1,4 @@
-# Use the base image
-FROM ghcr.io/railwayapp/nixpacks:ubuntu-1731369831
+FROM node:18-alpine  # Use a Node.js version that supports ReadableStream
 
 # Set the working directory
 WORKDIR /app
@@ -7,12 +6,7 @@ WORKDIR /app
 # Copy project files to the container
 COPY . .
 
-# Install Node.js and npm
-RUN apt-get update && apt-get install -y curl && \
-    curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
-    apt-get install -y nodejs
-
-# Install project dependencies
+# Install dependencies
 RUN npm install
 
 # Start the application
